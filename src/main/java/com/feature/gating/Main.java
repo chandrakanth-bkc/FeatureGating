@@ -37,6 +37,26 @@ public class Main {
             System.out.println("User2 is eligible for the feature - "+ feature2);
         else
             System.out.println("User2 is not eligible for the feature - "+ feature2);
+
+        //Add new operator ||
+        featureGate.addNewOperator("||", new Operator(Expression.OR_PRECEDENCE) {
+            @Override
+            public Object compute(Object o1, Object o2) {
+                if (o1 instanceof Boolean && o2 instanceof Boolean) {
+                    Boolean x = (Boolean) o1;
+                    Boolean y = (Boolean) o2;
+                    return x || y;
+                } else {
+                    throw new Expression.ExpressionException("|| operator cannot be used on the used data types");
+                }
+            }
+        });
+        String condition3 = "(age BETWEEN 25 40) || (cumulative_order_amount > 10000)";
+        if(featureGate.isAllowed(condition3, feature2, user2))
+            System.out.println("User2 is eligible for the feature - "+ feature2);
+        else
+            System.out.println("User2 is not eligible for the feature - "+ feature2);
+
     }
 }
 

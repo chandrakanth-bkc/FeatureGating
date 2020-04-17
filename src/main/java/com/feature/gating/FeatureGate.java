@@ -6,8 +6,16 @@ public class FeatureGate {
 
     private Expression expression;
 
+    public FeatureGate() {
+        expression = new Expression("");
+    }
+
+    public void addNewOperator(String value, Operator operator) {
+        expression.addNewOperator(value, operator);
+    }
+
     public boolean isAllowed(String conditionalExpression, String feature, Map<String, Object> user) {
-        expression = new Expression(conditionalExpression);
+        expression.setExpression(conditionalExpression);
         for(String key : user.keySet()) {
             expression.addNewVariable(key, user.get(key));
         }
