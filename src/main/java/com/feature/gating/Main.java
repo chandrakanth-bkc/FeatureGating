@@ -10,7 +10,7 @@ public class Main {
         FeatureGate featureGate = new FeatureGate();
 
         // Test 1
-        String condition1 = " (age <= 25.5 AND gender == \"Male\") OR (past_order_amount > 3000) OR attributes1 NONEOF attributes2 ";
+        String condition1 = " (age <= 25.5 AND gender == \"Male\") OR (past_order_amount > 3000) OR attributes1 NONEOF attributes2 "; //evaluate to true
         String feature1 = "One Day Delivery";
         Map<String, Object> user1 = new HashMap<String, Object>();
         user1.put("age", 24);
@@ -25,7 +25,7 @@ public class Main {
             System.out.println("User1 is not eligible for the feature - "+ feature1);
 
         //Test 2
-        String condition2 = "(age BETWEEN 25 40) OR (cumulative_order_amount > 10000) AND (points1 ALLOF points2 AND (8 BETWEEN 3 5))";
+        String condition2 = "(age BETWEEN 25 40) OR (cumulative_order_amount > 10000) AND (points1 ALLOF points2 AND (8 BETWEEN 3 5))"; //evaluate to false
         String feature2 = "Credit shopping";
         Map<String, Object> user2 = new HashMap<String, Object>();
         user2.put("age", 19);
@@ -51,7 +51,7 @@ public class Main {
                 }
             }
         });
-        String condition3 = "(age BETWEEN 25 40) || (cumulative_order_amount > 10000)";
+        String condition3 = "(age BETWEEN 25 40) || (cumulative_order_amount > 10000)"; //evaluate to true
         if(featureGate.isAllowed(condition3, feature2, user2))
             System.out.println("User2 is eligible for the feature - "+ feature2);
         else
