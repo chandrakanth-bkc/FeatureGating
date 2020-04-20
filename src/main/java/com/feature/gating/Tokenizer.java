@@ -3,6 +3,8 @@ package com.feature.gating;
 import java.util.Iterator;
 import java.util.Map;
 
+import static com.feature.gating.Constants.*;
+
 public class Tokenizer implements Iterator<Token> {
     private int index;
     private Map<String, Operator> operatorMap;

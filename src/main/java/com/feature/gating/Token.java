@@ -1,5 +1,7 @@
 package com.feature.gating;
 
+import static com.feature.gating.Constants.*;
+
 public class Token{
 
     public String value = "";
